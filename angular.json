@@ -90,7 +90,6 @@
       }
     }
   },
-  "defaultProject": "ngx-webcam",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "",
