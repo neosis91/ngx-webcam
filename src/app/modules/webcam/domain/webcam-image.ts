@@ -10,10 +10,10 @@ export class WebcamImage {
     this._imageData = imageData;
   }
 
-  private readonly _mimeType: string = null;
-  private _imageAsBase64: string = null;
-  private readonly _imageAsDataUrl: string = null;
-  private readonly _imageData: ImageData = null;
+  private readonly _mimeType: string | null = null;
+  private _imageAsBase64: string | null = null;
+  private readonly _imageAsDataUrl: string | null = null;
+  private readonly _imageData: ImageData | null = null;
 
 
   /**

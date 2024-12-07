@@ -1,3 +1,3 @@
 export class WebcamMirrorProperties {
-  public x: string;  // ["auto", "always", "never"]
+  public x: 'auto' | 'always' | 'never';
 }
