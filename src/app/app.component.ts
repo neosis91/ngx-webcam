@@ -5,7 +5,7 @@ import {WebcamUtil} from './modules/webcam/util/webcam.util';
 import {WebcamInitError} from './modules/webcam/domain/webcam-init-error';
 
 @Component({
-  selector: 'appRoot',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
@@ -15,8 +15,8 @@ export class AppComponent implements OnInit {
   public allowCameraSwitch = true;
   public multipleWebcamsAvailable = false;
   public deviceId: string;
-  public facingMode: string = 'environment';
-  public messages: any[] = [];
+  public facingMode = 'environment';
+  public messages: (string | WebcamInitError)[] = [];
 
   // latest snapshot
   public webcamImage: WebcamImage = null;
@@ -64,7 +64,7 @@ export class AppComponent implements OnInit {
     this.readAvailableVideoInputs();
   }
 
-  addMessage(message: any): void {
+  addMessage(message: string): void {
     console.log(message);
     this.messages.unshift(message);
   }
