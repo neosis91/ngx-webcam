@@ -1,9 +1,8 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {AppComponent} from './app.component';
-import {WebcamModule} from './modules/webcam/webcam.module';
 import {FormsModule} from '@angular/forms';
-
+import {WebcamComponent} from './modules/webcam/webcam/webcam.component';
 
 @NgModule({
   declarations: [
@@ -12,7 +11,7 @@ import {FormsModule} from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,
-    WebcamModule
+    WebcamComponent
   ],
   providers: [],
   bootstrap: [AppComponent]

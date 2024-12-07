@@ -8,7 +8,8 @@ import {WebcamMirrorProperties} from '../domain/webcam-mirror-properties';
 @Component({
   selector: 'webcam',
   templateUrl: './webcam.component.html',
-  styleUrls: ['./webcam.component.scss']
+  styleUrls: ['./webcam.component.scss'],
+  standalone: true
 })
 export class WebcamComponent implements AfterViewInit, OnDestroy {
   private static DEFAULT_VIDEO_OPTIONS: MediaTrackConstraints = {facingMode: 'environment'};
