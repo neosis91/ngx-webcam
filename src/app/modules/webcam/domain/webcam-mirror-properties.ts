@@ -1,3 +1,5 @@
-export class WebcamMirrorProperties {
-  public x: 'auto' | 'always' | 'never';
+export enum WebcamMirrorProperties {
+  AUTO = "auto",
+  ALWAYS = 'always',
+  NEVER = 'never'
 }

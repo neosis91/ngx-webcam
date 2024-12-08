@@ -3,6 +3,7 @@ import {Observable, Subject} from 'rxjs';
 import {WebcamImage} from './modules/webcam/domain/webcam-image';
 import {WebcamUtil} from './modules/webcam/util/webcam.util';
 import {WebcamInitError} from './modules/webcam/domain/webcam-init-error';
+import {WebcamMirrorProperties} from './modules/webcam/domain/webcam-mirror-properties';
 
 @Component({
   selector: 'app-root',
@@ -92,4 +93,6 @@ export class AppComponent implements OnInit {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
   }
+
+  protected readonly WebcamMirrorProperties = WebcamMirrorProperties;
 }

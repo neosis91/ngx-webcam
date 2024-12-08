@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnDestroy, Output, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ElementRef, EventEmitter, input, Input, OnDestroy, Output, ViewChild} from '@angular/core';
 import {WebcamInitError} from '../domain/webcam-init-error';
 import {WebcamImage} from '../domain/webcam-image';
 import {Observable, Subscription} from 'rxjs';
@@ -25,7 +25,7 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
   /** Flag to enable/disable camera switch. If enabled, a switch icon will be displayed if multiple cameras were found */
   @Input() public allowCameraSwitch: boolean = true;
   /** Parameter to control image mirroring (i.e. for user-facing camera). ["auto", "always", "never"] */
-  @Input() public mirrorImage: string | WebcamMirrorProperties;
+  mirrorImage = input<WebcamMirrorProperties>(WebcamMirrorProperties.AUTO);
   /** Flag to control whether an ImageData object is stored into the WebcamImage object. */
   @Input() public captureImageData: boolean = false;
   /** The image type to use when capturing snapshots */
@@ -57,9 +57,9 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
   private switchCameraSubscription: Subscription;
   /** MediaStream object in use for streaming UserMedia data */
   private mediaStream: MediaStream = null;
-  @ViewChild('video', { static: true }) private video: ElementRef<HTMLVideoElement>;
+  @ViewChild('video', {static: true}) private video: ElementRef<HTMLVideoElement>;
   /** Canvas for Video Snapshots */
-  @ViewChild('canvas', { static: true }) private canvas: ElementRef<HTMLCanvasElement>;
+  @ViewChild('canvas', {static: true}) private canvas: ElementRef<HTMLCanvasElement>;
 
   /** width and height of the active video stream */
   private activeVideoSettings: MediaTrackSettings = null;
@@ -258,7 +258,6 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
     this.initWebcam(deviceId, this.videoOptions);
   }
 
-
   /**
    * Event-handler for video resize event.
    * Triggers Angular change detection so that new video dimensions get applied
@@ -358,30 +357,15 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
       return false;
     }
 
-    // check for explicit mirror override parameter
-    {
-      let mirror: string = 'auto';
-      if (this.mirrorImage) {
-        if (typeof this.mirrorImage === 'string') {
-          mirror = String(this.mirrorImage).toLowerCase();
-        } else {
-          // WebcamMirrorProperties
-          if (this.mirrorImage.x) {
-            mirror = this.mirrorImage.x.toLowerCase();
-          }
-        }
-      }
-
-      switch (mirror) {
-        case 'always':
-          return true;
-        case 'never':
-          return false;
-      }
+    switch (this.mirrorImage()) {
+      case WebcamMirrorProperties.ALWAYS:
+        return true;
+      case WebcamMirrorProperties.NEVER:
+        return false;
+      case WebcamMirrorProperties.AUTO:
+      default:
+        return WebcamComponent.isUserFacing(this.getActiveVideoTrack());
     }
-
-    // default: enable mirroring if webcam is user facing
-    return WebcamComponent.isUserFacing(this.getActiveVideoTrack());
   }
 
   /**
