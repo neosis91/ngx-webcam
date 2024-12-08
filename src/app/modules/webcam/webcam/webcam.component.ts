@@ -4,11 +4,15 @@ import {WebcamImage} from '../domain/webcam-image';
 import {Observable, Subscription} from 'rxjs';
 import {WebcamUtil} from '../util/webcam.util';
 import {WebcamMirrorProperties} from '../domain/webcam-mirror-properties';
+import {NgClass} from '@angular/common';
 
 @Component({
   selector: 'webcam',
   templateUrl: './webcam.component.html',
   styleUrls: ['./webcam.component.scss'],
+  imports: [
+    NgClass
+  ],
   standalone: true
 })
 export class WebcamComponent implements AfterViewInit, OnDestroy {
@@ -276,14 +280,8 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
     return Math.min(this.height, this.width / videoRatio);
   }
 
-  public get videoStyleClasses() {
-    let classes: string = '';
-
-    if (this.isMirrorImage()) {
-      classes += 'mirrored ';
-    }
-
-    return classes.trim();
+  public get videoStyleClasses(): boolean {
+    return this.isMirrorImage();
   }
 
   public get nativeVideoElement() {
@@ -352,7 +350,8 @@ export class WebcamComponent implements AfterViewInit, OnDestroy {
     return this.mediaStream ? this.mediaStream.getVideoTracks()[0] : null;
   }
 
-  private isMirrorImage(): boolean {
+  public isMirrorImage(): boolean {
+    console.log('toto');
     if (!this.getActiveVideoTrack()) {
       return false;
     }
