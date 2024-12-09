@@ -31,8 +31,8 @@ the <a href="https://github.com/basst314/ngx-webcam-demo" target="_blank">Demo-P
 
 **Note:** For older versions of Angular/TypeScript, please use previous releases of this library.
 
-- Angular: `>=13.0.0`
-- Typescript: `>=4.4.4`
+- Angular: `>=19.0.0`
+- Typescript: `>=5.6.3`
 - RxJs: `>=6.6.0`
 - **Important:** Your app must be served on a secure context using `https://` or on localhost, for modern browsers to
   permit WebRTC/UserMedia access.
