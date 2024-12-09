@@ -8,9 +8,10 @@
 
   </video>
   @if (allowCameraSwitch() && availableVideoInputs.length > 1 && videoInitialized) {
-    <button class="absolute cursor-pointer bg-black/10 rounded-md right-[13px] top-[10px] h-12 w-12 bg-[length:80%] bg-center transition-colors duration-200 ease-in-out hover:bg-black/[0.18]"
-         [ngStyle]="{'background-image': 'url(' + backgroundImageUrl + ')'}"
-       (click)="rotateVideoInput(true)">
+    <button
+      class="absolute cursor-pointer bg-black/10 rounded-md right-[13px] top-[10px] h-12 w-12 bg-[length:80%] bg-center transition-colors duration-200 ease-in-out hover:bg-black/[0.18]"
+      [ngStyle]="{'background-image': 'url(' + backgroundImageUrl + ')'}"
+      (click)="rotateVideoInput(true)">
 
     </button>
   }

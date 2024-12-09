@@ -53,11 +53,11 @@ the <a href="https://github.com/basst314/ngx-webcam-demo" target="_blank">Demo-P
 2. Import the `WebcamModule` into your Angular module:
 
 ```typescript
-import {WebcamModule} from 'ngx-webcam';
+import {WebcamComponent} from 'ngx-webcam';
 
 @NgModule({
   imports: [
-    WebcamModule,
+    WebcamComponent,
     ...
   ],
   ...
@@ -68,7 +68,7 @@ export class AppModule {
 
 3. Use the `WebcamComponent` on your pages:
 
-`<webcam></webcam>`
+`<ngx-webcam></ngx-webcam>`
 
 As simple as that.
 

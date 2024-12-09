@@ -27,7 +27,8 @@
     "e2e": "ng e2e",
     "packagr": "ng-packagr -p ng-package.json",
     "docs": "npm run build -- --base-href /ngx-webcam/ --output-path docs",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "test": "jest --coverage"
   },
   "private": false,
   "devDependencies": {
@@ -43,12 +44,15 @@
     "@angular/platform-browser": "^19.0.3",
     "@angular/platform-browser-dynamic": "^19.0.3",
     "@angular/router": "^19.0.3",
+    "@types/jest": "^29.5.14",
     "angular-eslint": "19.0.1",
     "autoprefixer": "^10.4.20",
     "browserslist": "^4.16.5",
     "codelyzer": "^6.0.0",
     "core-js": "^3.6.5",
     "eslint": "^9.15.0",
+    "jest": "^29.7.0",
+    "jest-preset-angular": "^14.4.2",
     "ng-packagr": "^19.0.1",
     "postcss": "^8.4.49",
     "rxjs": "^7.8.0",
@@ -57,5 +61,15 @@
     "typescript": "5.6.3",
     "typescript-eslint": "8.16.0",
     "zone.js": "~0.15.0"
+  },
+  "jest": {
+    "preset": "jest-preset-angular",
+    "setupFilesAfterEnv": [
+      "<rootDir>/setup-jest.ts"
+    ],
+    "globalSetup": "jest-preset-angular/global-setup",
+    "modulePaths": [
+      "<rootDir>/src"
+    ]
   }
 }

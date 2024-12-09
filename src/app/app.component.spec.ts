@@ -7,23 +7,25 @@ describe('AppComponent', () => {
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent,
-        WebcamComponent
+        AppComponent
       ],
       imports: [
-        FormsModule
+        FormsModule,
+        WebcamComponent
       ]
     }).compileComponents();
   }));
+
   it('should create the app', waitForAsync(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
     expect(app).toBeTruthy();
   }));
-  it('should render title in a h1 tag', waitForAsync(() => {
+
+  it('should render title in a h1 tag', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('ngx-webcam Demo');
-  }));
+    const compiled = fixture.nativeElement as HTMLElement;
+    expect(compiled.querySelector('h1')?.textContent).toContain('ngx-webcam Demo');
+  });
 });
