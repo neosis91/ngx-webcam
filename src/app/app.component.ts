@@ -6,9 +6,10 @@ import {WebcamInitError} from './modules/webcam/domain/webcam-init-error';
 import {WebcamMirrorProperties} from './modules/webcam/domain/webcam-mirror-properties';
 
 @Component({
-  selector: 'ngx-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+    selector: 'ngx-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    standalone: false
 })
 export class AppComponent implements OnInit {
   // toggle webcam on/off
