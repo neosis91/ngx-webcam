@@ -1,3 +1,9 @@
+export enum IMAGE_TYPE {
+  JPEG = 'image/jpeg',
+  JPG = 'image/jpg',
+  PNG = 'image/png',
+}
+
 /**
  * Container class for a captured webcam image
  * @author basst314, davidshen84

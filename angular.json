@@ -101,11 +101,11 @@
   },
   "schematics": {
     "@schematics/angular:component": {
-      "prefix": "",
+      "prefix": "ngx",
       "style": "scss"
     },
     "@schematics/angular:directive": {
-      "prefix": ""
+      "prefix": "ngx"
     }
   },
   "cli": {

@@ -1,4 +1,4 @@
-<div class="relative inline-block leading-none" (click)="imageClick.next();">
+<div class="relative inline-block leading-none">
   <video #video
          [ngClass]="{'scale-x-[-1]': videoStyleClasses}"
          [width]="videoWidth"
@@ -7,8 +7,12 @@
          (resize)="videoResize()">
 
   </video>
-  @if (allowCameraSwitch && availableVideoInputs.length > 1 && videoInitialized) {
-    <div class="camera-switch" (click)="rotateVideoInput(true)"></div>
+  @if (allowCameraSwitch() && availableVideoInputs.length > 1 && videoInitialized) {
+    <button class="absolute cursor-pointer bg-black/10 rounded-md right-[13px] top-[10px] h-12 w-12 bg-[length:80%] bg-center transition-colors duration-200 ease-in-out hover:bg-black/[0.18]"
+         [ngStyle]="{'background-image': 'url(' + backgroundImageUrl + ')'}"
+       (click)="rotateVideoInput(true)">
+
+    </button>
   }
-  <canvas class="hidden" #canvas [width]="width" [height]="height"></canvas>
+  <canvas class="hidden" #canvas [width]="width()" [height]="height()"></canvas>
 </div>
