@@ -6,10 +6,9 @@ import {WebcamInitError} from './modules/webcam/domain/webcam-init-error';
 import {WebcamMirrorProperties} from './modules/webcam/domain/webcam-mirror-properties';
 
 @Component({
-    selector: 'ngx-root',
-    templateUrl: './app.component.html',
-    styleUrls: ['./app.component.scss'],
-    standalone: false
+  selector: 'ngx-root',
+  templateUrl: './app.component.html',
+  standalone: false
 })
 export class AppComponent implements OnInit {
   // toggle webcam on/off
@@ -22,11 +21,29 @@ export class AppComponent implements OnInit {
 
   // latest snapshot
   public webcamImage: WebcamImage = null;
-
+  protected readonly WebcamMirrorProperties = WebcamMirrorProperties;
+  protected readonly IMAGE_TYPE = IMAGE_TYPE;
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
   // switch to next / previous / specific webcam; true/false: forward/backwards, string: deviceId
-  private nextWebcam: Subject<boolean|string> = new Subject<boolean|string>();
+  private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
+
+  public get triggerObservable(): Observable<void> {
+    return this.trigger.asObservable();
+  }
+
+  public get nextWebcamObservable(): Observable<boolean | string> {
+    return this.nextWebcam.asObservable();
+  }
+
+  public get videoOptions(): MediaTrackConstraints {
+    const result: MediaTrackConstraints = {};
+    if (this.facingMode && this.facingMode !== '') {
+      result.facingMode = {ideal: this.facingMode};
+    }
+
+    return result;
+  }
 
   public ngOnInit(): void {
     this.readAvailableVideoInputs();
@@ -47,7 +64,7 @@ export class AppComponent implements OnInit {
     }
   }
 
-  public showNextWebcam(directionOrDeviceId: boolean|string): void {
+  public showNextWebcam(directionOrDeviceId: boolean | string): void {
     // true => move forward through devices
     // false => move backwards through devices
     // string => move to device with given deviceId
@@ -56,7 +73,6 @@ export class AppComponent implements OnInit {
 
   public handleImage(webcamImage: WebcamImage): void {
     this.addMessage('Received webcam image');
-    console.log(webcamImage);
     this.webcamImage = webcamImage;
   }
 
@@ -67,25 +83,7 @@ export class AppComponent implements OnInit {
   }
 
   addMessage(message: string): void {
-    console.log(message);
     this.messages.unshift(message);
-  }
-
-  public get triggerObservable(): Observable<void> {
-    return this.trigger.asObservable();
-  }
-
-  public get nextWebcamObservable(): Observable<boolean|string> {
-    return this.nextWebcam.asObservable();
-  }
-
-  public get videoOptions(): MediaTrackConstraints {
-    const result: MediaTrackConstraints = {};
-    if (this.facingMode && this.facingMode !== '') {
-      result.facingMode = { ideal: this.facingMode };
-    }
-
-    return result;
   }
 
   private readAvailableVideoInputs() {
@@ -94,7 +92,4 @@ export class AppComponent implements OnInit {
         this.multipleWebcamsAvailable = mediaDevices && mediaDevices.length > 1;
       });
   }
-
-  protected readonly WebcamMirrorProperties = WebcamMirrorProperties;
-  protected readonly IMAGE_TYPE = IMAGE_TYPE;
 }

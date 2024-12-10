@@ -1,5 +1,5 @@
 export enum WebcamMirrorProperties {
-  AUTO = "auto",
+  AUTO = 'auto',
   ALWAYS = 'always',
   NEVER = 'never'
 }

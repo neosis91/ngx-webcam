@@ -2,6 +2,7 @@ export enum IMAGE_TYPE {
   JPEG = 'image/jpeg',
   JPG = 'image/jpg',
   PNG = 'image/png',
+  WEBP = 'image/webp'
 }
 
 /**
@@ -10,26 +11,17 @@ export enum IMAGE_TYPE {
  */
 export class WebcamImage {
 
+  private readonly _mimeType: string | null = null;
+  private readonly _imageAsDataUrl: string | null = null;
+  private readonly _imageData: ImageData | null = null;
+
   public constructor(imageAsDataUrl: string, mimeType: string, imageData: ImageData) {
     this._mimeType = mimeType;
     this._imageAsDataUrl = imageAsDataUrl;
     this._imageData = imageData;
   }
 
-  private readonly _mimeType: string | null = null;
   private _imageAsBase64: string | null = null;
-  private readonly _imageAsDataUrl: string | null = null;
-  private readonly _imageData: ImageData | null = null;
-
-
-  /**
-   * Extracts the Base64 data out of the given dataUrl.
-   * @param dataUrl the given dataUrl
-   * @param mimeType the mimeType of the data
-   */
-  private static getDataFromDataUrl(dataUrl: string, mimeType: string) {
-    return dataUrl.replace(`data:${mimeType};base64,`, '');
-  }
 
   /**
    * Get the base64 encoded image data
@@ -54,6 +46,15 @@ export class WebcamImage {
    */
   public get imageData(): ImageData {
     return this._imageData;
+  }
+
+  /**
+   * Extracts the Base64 data out of the given dataUrl.
+   * @param dataUrl the given dataUrl
+   * @param mimeType the mimeType of the data
+   */
+  private static getDataFromDataUrl(dataUrl: string, mimeType: string) {
+    return dataUrl.replace(`data:${mimeType};base64,`, '');
   }
 
 }

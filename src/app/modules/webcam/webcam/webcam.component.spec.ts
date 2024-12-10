@@ -1,7 +1,6 @@
-import {ComponentFixture, TestBed, tick, waitForAsync} from '@angular/core/testing';
+import {ComponentFixture, TestBed, waitForAsync} from '@angular/core/testing';
 
 import {WebcamComponent} from './webcam.component';
-import {input} from '@angular/core';
 
 
 describe('WebcamComponent', () => {

@@ -1,4 +1,4 @@
-<div style="text-align:center">
+<div class="text-center">
   <h1>ngx-webcam Demo</h1>
 
   <div>
@@ -11,34 +11,34 @@
                   [switchCamera]="nextWebcamObservable"
                   [mirrorImage]="WebcamMirrorProperties.ALWAYS"
                   [videoOptions]="videoOptions"
-                  [imageType]="IMAGE_TYPE.JPEG"
+                  [imageType]="IMAGE_TYPE.WEBP"
                   [imageQuality]="1"
                   (cameraSwitched)="cameraWasSwitched($event)"
                   (initError)="handleInitError($event)"/>
     }
     <br>
-    <button class="actionBtn" (click)="triggerSnapshot();">Take A Snapshot</button>
-    <button class="actionBtn" (click)="toggleWebcam();">Toggle Webcam</button>
+    <button (click)="triggerSnapshot();" class="mt-5 mb-2 text-xl">Take A Snapshot</button>
+    <button (click)="toggleWebcam();" class="mt-5 mb-2 text-xl">Toggle Webcam</button>
     <br>
-    <button class="actionBtn" (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable">Next Webcam
+    <button (click)="showNextWebcam(true);" [disabled]="!multipleWebcamsAvailable" class="mt-5 mb-2 text-xl">Next Webcam
     </button>
-    <input id="cameraSwitchCheckbox" type="checkbox" [(ngModel)]="allowCameraSwitch"><label for="cameraSwitchCheckbox">Allow
+    <input [(ngModel)]="allowCameraSwitch" id="cameraSwitchCheckbox" type="checkbox"><label for="cameraSwitchCheckbox">Allow
     Camera Switch</label>
     <br>
-    DeviceId: <input id="deviceId" type="text" [(ngModel)]="deviceId" style="width: 500px">
+    DeviceId: <input [(ngModel)]="deviceId" class="w-500" id="deviceId" type="text">
     <button (click)="showNextWebcam(deviceId);">Activate</button>
     <br>
     Preferred facing mode:
-    <input type="radio" value="user" name="facingMode" [(ngModel)]="facingMode"> User
-    <input type="radio" value="environment" name="facingMode" [(ngModel)]="facingMode"> Environment
-    <input type="radio" value="" name="facingMode" [(ngModel)]="facingMode"> No preference
+    <input [(ngModel)]="facingMode" name="facingMode" type="radio" value="user"> User
+    <input [(ngModel)]="facingMode" name="facingMode" type="radio" value="environment"> Environment
+    <input [(ngModel)]="facingMode" name="facingMode" type="radio" value=""> No preference
   </div>
 </div>
 
 @if (webcamImage) {
-  <div class="snapshot">
+  <div class="text-center">
     <h2>Nice one!</h2>
-    <img [src]="webcamImage.imageAsDataUrl" alt="webcam image">
+    <img [src]="webcamImage.imageAsDataUrl" alt="webcam image" class="max-w-800 max-h-800">
   </div>
 }
 
@@ -52,9 +52,8 @@
 }
 
 <h2>Like this project on GitHub:</h2>
-<ul class="links">
+<ul class="pb-20">
   <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/basst314/ngx-webcam">ngx-webcam / GitHub</a></h2>
+    <h2><a href="https://github.com/basst314/ngx-webcam" rel="noopener" target="_blank">ngx-webcam / GitHub</a></h2>
   </li>
 </ul>
-

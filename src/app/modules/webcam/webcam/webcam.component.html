@@ -1,10 +1,10 @@
-<div class="relative inline-block leading-none">
+<div (click)="imageClick.emit();" class="relative inline-block leading-none">
   <video #video
-         [ngClass]="{'scale-x-[-1]': videoStyleClasses}"
-         [width]="videoWidth"
+         (resize)="videoResize()"
          [height]="videoHeight"
-         autoplay muted playsinline
-         (resize)="videoResize()">
+         [ngClass]="{'scale-x-[-1]': videoStyleClasses}"
+         [width]="videoWidth" autoplay muted
+         playsinline>
 
   </video>
   @if (allowCameraSwitch() && availableVideoInputs.length > 1 && videoInitialized) {
@@ -15,5 +15,5 @@
 
     </button>
   }
-  <canvas class="hidden" #canvas [width]="width()" [height]="height()"></canvas>
+  <canvas #canvas [height]="height()" [width]="width()" class="hidden"></canvas>
 </div>
